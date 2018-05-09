@@ -1,0 +1,34 @@
+{
+  "articles": [
+    {
+      "content": [
+        "Hello, world",
+        "Buongiorno, mondo"
+      ],
+      "title": "Lorem ipsum...",
+      "url": "http://google.com"
+    }
+  ],
+  "sidebar_links": [
+    {
+      "title": "Apache NiFi",
+      "url": "http://nifi.apache.org"
+    },
+    {
+      "title": "Groovy",
+      "url": "http://groovy-lang.org"
+    }
+  ],
+  "recent": [
+    {
+      "title": "KSQL and Apache NiFi (Part I)",
+      "url": "/2018/05/ksql-and-apache-nifi"
+    },
+    {
+      "title": "HBase Visibility Labels",
+      "url": "/2018/05/hbase-visibility-labels"
+    }
+  ],
+  "title": "Complex Blog Sample",
+  "url": "http://github.com"
+}

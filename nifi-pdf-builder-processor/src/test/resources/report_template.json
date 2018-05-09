@@ -1,0 +1,13 @@
+{
+  "department": "HR",
+  "users": [
+    {
+      "name": "John Smith",
+      "bad_logins": 100
+    },
+    {
+      "name": "Jane Doe",
+      "bad_logins": 75
+    }
+  ]
+}
