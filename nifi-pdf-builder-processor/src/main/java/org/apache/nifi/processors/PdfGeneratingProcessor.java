@@ -6,6 +6,8 @@ import com.github.mustachejava.DefaultMustacheFactory;
 import com.github.mustachejava.Mustache;
 import com.itextpdf.html2pdf.HtmlConverter;
 import org.apache.nifi.annotation.behavior.InputRequirement;
+import org.apache.nifi.annotation.documentation.CapabilityDescription;
+import org.apache.nifi.annotation.documentation.Tags;
 import org.apache.nifi.annotation.lifecycle.OnScheduled;
 import org.apache.nifi.components.AllowableValue;
 import org.apache.nifi.components.PropertyDescriptor;
@@ -13,6 +15,7 @@ import org.apache.nifi.components.ValidationResult;
 import org.apache.nifi.components.Validator;
 import org.apache.nifi.expression.ExpressionLanguageScope;
 import org.apache.nifi.flowfile.FlowFile;
+import org.apache.nifi.flowfile.attributes.CoreAttributes;
 import org.apache.nifi.processor.AbstractProcessor;
 import org.apache.nifi.processor.ProcessContext;
 import org.apache.nifi.processor.ProcessSession;
@@ -35,6 +38,8 @@ import java.util.Set;
 
 
 @InputRequirement(InputRequirement.Requirement.INPUT_REQUIRED)
+@Tags({ "pdf", "generator", "html" })
+@CapabilityDescription("Provides the ability to build a PDF file from a HTML file that is generated from a user supplied template.")
 public class PdfGeneratingProcessor extends AbstractProcessor {
     static final PropertyDescriptor TEMPLATE = new PropertyDescriptor.Builder()
         .name("pdf-generator-template")
@@ -159,6 +164,7 @@ public class PdfGeneratingProcessor extends AbstractProcessor {
             output = session.write(output, out -> {
                 HtmlConverter.convertToPdf(result, out);
             });
+            output = session.putAttribute(output, CoreAttributes.MIME_TYPE.key(), "application/pdf");
 
             session.transfer(input, REL_ORIGINAL);
             session.transfer(output, REL_SUCCESS);
