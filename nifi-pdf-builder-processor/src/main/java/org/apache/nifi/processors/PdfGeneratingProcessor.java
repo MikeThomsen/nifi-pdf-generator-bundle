@@ -13,7 +13,6 @@ import org.apache.nifi.components.AllowableValue;
 import org.apache.nifi.components.PropertyDescriptor;
 import org.apache.nifi.components.ValidationResult;
 import org.apache.nifi.components.Validator;
-import org.apache.nifi.expression.ExpressionLanguageScope;
 import org.apache.nifi.flowfile.FlowFile;
 import org.apache.nifi.flowfile.attributes.CoreAttributes;
 import org.apache.nifi.processor.AbstractProcessor;
@@ -71,7 +70,7 @@ public class PdfGeneratingProcessor extends AbstractProcessor {
                     .build();
             }
         })
-        .expressionLanguageSupported(ExpressionLanguageScope.NONE)
+        .expressionLanguageSupported(false)
         .build();
 
     static final AllowableValue SOURCE_ATTRIBUTE = new AllowableValue("attr", "Flowfile Attributes");
@@ -87,7 +86,7 @@ public class PdfGeneratingProcessor extends AbstractProcessor {
                 "an attribute branch and flowfile json properties to a flowfile branch. See docs for additional details.")
         .addValidator(Validator.VALID)
         .allowableValues(SOURCE_ATTRIBUTE, SOURCE_BODY, SOURCE_BOTH)
-        .expressionLanguageSupported(ExpressionLanguageScope.NONE)
+        .expressionLanguageSupported(false)
         .defaultValue(SOURCE_ATTRIBUTE.getValue())
         .build();
 
