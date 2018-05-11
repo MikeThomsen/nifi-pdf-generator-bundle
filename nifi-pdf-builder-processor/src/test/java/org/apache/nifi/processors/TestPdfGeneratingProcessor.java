@@ -51,8 +51,6 @@ public class TestPdfGeneratingProcessor {
         runner.setProperty(PdfGeneratingProcessor.TEMPLATE_CONTEXT, PdfGeneratingProcessor.SOURCE_ATTRIBUTE);
         runner.enqueue("");
         runner.run();
-
-        dumpToTemp(runner);
     }
 
     @Test
@@ -128,8 +126,6 @@ public class TestPdfGeneratingProcessor {
         runner.run();
 
         testCounts(runner);
-
-        dumpToTemp(runner);
     }
 
     private void testCounts(TestRunner runner) {
